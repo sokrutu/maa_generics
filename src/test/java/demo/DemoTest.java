@@ -30,7 +30,7 @@ public class DemoTest {
     }
 
     @Test
-    public void testResolvePair() {
+    public void test() {
         String defaultTypesPath = "src/test/resources/defaultTypes";
         String modelsPath = "src/test/resources/models";
 
