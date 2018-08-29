@@ -1,0 +1,20 @@
+package test;
+
+import java.lang.Pair;
+
+component Test {
+
+  port
+    in Boolean i,
+    out Integer o;
+
+  automaton TestAut {
+    variable Pair<Integer,Boolean> c;
+
+    state A;
+    initial A;
+
+    A [c.fst > 1];
+    A [c.snd];
+  }
+}

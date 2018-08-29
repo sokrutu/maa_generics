@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>montibelle</groupId>
+    <artifactId>maa_generics</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <properties>
+        <monticore.version>4.5.2</monticore.version>
+        <se-commons.version>1.7.9-SNAPSHOT</se-commons.version>
+        <se-groovy.maven.version>1.2.3</se-groovy.maven.version>
+        <generator.version>4.1.6</generator.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.se_rwth.commons</groupId>
+            <artifactId>se-commons-logging</artifactId>
+            <version>${se-commons.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>montiarc.languages</groupId>
+            <artifactId>montiarcautomaton-fe</artifactId>
+            <version>${generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>de.monticore</groupId>
+            <artifactId>monticore-templateclassgenerator</artifactId>
+            <version>${monticore.version}</version>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>se-nexus</id>
+            <url>https://nexus.se.rwth-aachen.de/content/groups/public/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>se-nexus</id>
+            <url>https://nexus.se.rwth-aachen.de/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
