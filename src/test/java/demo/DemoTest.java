@@ -1,17 +1,17 @@
 package demo;
 
 import de.monticore.ModelingLanguageFamily;
-import de.monticore.automaton.ioautomaton.JavaHelper;
 import de.monticore.io.paths.ModelPath;
-import de.monticore.lang.montiarc.montiarc._ast.ASTComponent;
-import de.monticore.lang.montiarc.montiarc._symboltable.ComponentSymbol;
-import de.monticore.lang.montiarc.montiarcautomaton._cocos.MontiArcAutomatonCoCoChecker;
-import de.monticore.lang.montiarc.montiarcautomaton._symboltable.MontiArcAutomatonLanguage;
-import de.monticore.lang.montiarc.montiarcautomaton._symboltable.MontiArcAutomatonLanguageFamily;
-import de.monticore.lang.montiarc.montiarcautomaton.cocos.MontiArcAutomatonCocos;
 import de.monticore.symboltable.GlobalScope;
 import de.monticore.templateclassgenerator.Modelfinder;
 import de.se_rwth.commons.logging.Log;
+import montiarc._ast.ASTComponent;
+import montiarc._cocos.MontiArcCoCoChecker;
+import montiarc._symboltable.ComponentSymbol;
+import montiarc._symboltable.MontiArcLanguage;
+import montiarc._symboltable.MontiArcLanguageFamily;
+import montiarc.cocos.MontiArcCoCos;
+import montiarc.helper.JavaHelper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +25,7 @@ public class DemoTest {
 
     @Before
     public void setup() {
+        Log.initDEBUG();
         Log.getFindings().clear();
         Log.enableFailQuick(false);
     }
@@ -35,14 +36,14 @@ public class DemoTest {
         String modelsPath = "src/test/resources/models";
 
         // Globales Scope
-        ModelingLanguageFamily fam = new MontiArcAutomatonLanguageFamily();
+        ModelingLanguageFamily fam = new MontiArcLanguageFamily();
         final ModelPath mp = new ModelPath(Paths.get(modelsPath), Paths.get(defaultTypesPath));
         GlobalScope scope = new GlobalScope(mp, fam);
         JavaHelper.addJavaPrimitiveTypes(scope);
 
         // Alle Komponenten
         List<ComponentSymbol> components = Modelfinder
-                .getModelsInModelPath(Paths.get(modelsPath).toFile(), MontiArcAutomatonLanguage.FILE_ENDING)
+                .getModelsInModelPath(Paths.get(modelsPath).toFile(), MontiArcLanguage.FILE_ENDING)
                 .stream()
                 .map(fqModelName -> scope.<ComponentSymbol>resolve(fqModelName, ComponentSymbol.KIND))
                 .filter(Optional::isPresent)
@@ -55,7 +56,7 @@ public class DemoTest {
         components
                 .stream()
                 .forEach(c -> {
-                    MontiArcAutomatonCoCoChecker checker = MontiArcAutomatonCocos.createChecker();
+                    MontiArcCoCoChecker checker = MontiArcCoCos.createChecker();
                     checker.checkAll((ASTComponent) c.getAstNode().get());
                 });
 

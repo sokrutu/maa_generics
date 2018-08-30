@@ -24,22 +24,21 @@
         <monticore.version>4.5.2</monticore.version>
         <se-commons.version>1.7.9-SNAPSHOT</se-commons.version>
         <junit.version>4.12</junit.version>
-        <!--<montiarc.version>4.5.0</montiarc.version>-->
+        <montiarc.version>4.5.0</montiarc.version>
         <maa.version>4.1.6</maa.version>
     </properties>
 
     <dependencies>
-        <!--This breaks ASTComponent-->
-        <!--<dependency>
+        <dependency>
             <groupId>montiarc.languages</groupId>
             <artifactId>montiarc-fe</artifactId>
             <version>${montiarc.version}</version>
-        </dependency>-->
-        <dependency>
+        </dependency>
+        <!--<dependency>
             <groupId>montiarc.languages</groupId>
             <artifactId>montiarcautomaton-fe</artifactId>
             <version>${maa.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>de.se_rwth.commons</groupId>
             <artifactId>se-commons-logging</artifactId>
