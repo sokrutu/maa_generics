@@ -23,26 +23,33 @@
     <properties>
         <monticore.version>4.5.2</monticore.version>
         <se-commons.version>1.7.9-SNAPSHOT</se-commons.version>
-        <se-groovy.maven.version>1.2.3</se-groovy.maven.version>
-        <generator.version>4.1.6</generator.version>
+        <junit.version>4.12</junit.version>
+        <!--<montiarc.version>4.5.0</montiarc.version>-->
+        <maa.version>4.1.6</maa.version>
     </properties>
 
     <dependencies>
+        <!--This breaks ASTComponent-->
+        <!--<dependency>
+            <groupId>montiarc.languages</groupId>
+            <artifactId>montiarc-fe</artifactId>
+            <version>${montiarc.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>montiarc.languages</groupId>
+            <artifactId>montiarcautomaton-fe</artifactId>
+            <version>${maa.version}</version>
+        </dependency>
         <dependency>
             <groupId>de.se_rwth.commons</groupId>
             <artifactId>se-commons-logging</artifactId>
             <version>${se-commons.version}</version>
         </dependency>
         <dependency>
-            <groupId>montiarc.languages</groupId>
-            <artifactId>montiarcautomaton-fe</artifactId>
-            <version>${generator.version}</version>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-            <version>4.12</version>
+            <version>${junit.version}</version>
         </dependency>
         <dependency>
             <groupId>de.monticore</groupId>
