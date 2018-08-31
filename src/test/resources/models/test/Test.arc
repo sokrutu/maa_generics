@@ -8,13 +8,13 @@ component Test {
     in boolean i,
     out int o;
 
-  automaton TestAut {
-    variable Pair<int,boolean> c;
+  Pair<int,boolean> c;
 
+  automaton TestAut {
     state A;
     initial A;
 
-    // These brake
+    // These break
     A [c.fst > 1];
     A [c.snd];
 

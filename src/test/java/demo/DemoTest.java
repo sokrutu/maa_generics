@@ -10,7 +10,7 @@ import montiarc._cocos.MontiArcCoCoChecker;
 import montiarc._symboltable.ComponentSymbol;
 import montiarc._symboltable.MontiArcLanguage;
 import montiarc._symboltable.MontiArcLanguageFamily;
-import montiarc.cocos.MontiArcCoCos;
+import montiarc.cocos.*;
 import montiarc.helper.JavaHelper;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class DemoTest {
 
     @Before
     public void setup() {
-        Log.initDEBUG();
+        Log.init();
         Log.getFindings().clear();
         Log.enableFailQuick(false);
     }
@@ -57,8 +57,63 @@ public class DemoTest {
                 .stream()
                 .forEach(c -> {
                     MontiArcCoCoChecker checker = MontiArcCoCos.createChecker();
+                    // Dieser Test ist nicht in den Default-CoCos. Und er failt immer noch.
+                    checker.addCoCo(new AutomatonGuardIsNotBoolean());
                     checker.checkAll((ASTComponent) c.getAstNode().get());
                 });
+
+        // Übersicht aller Default-CoCos
+        /*new MontiArcCoCoChecker()
+                .addCoCo(new PortUsage())
+                .addCoCo(new SubComponentsConnected())
+                .addCoCo(new PackageLowerCase())
+                .addCoCo(new NamesCorrectlyCapitalized())
+                .addCoCo(new DefaultParametersHaveCorrectOrder())
+                .addCoCo(new DefaultParametersCorrectlyAssigned())
+                .addCoCo(new ComponentWithTypeParametersHasInstance())
+                .addCoCo(new CircularInheritance())
+                .addCoCo(new IOAssignmentCallFollowsMethodCall())
+                .addCoCo(new SubcomponentGenericTypesCorrectlyAssigned())
+                .addCoCo(new TypeParameterNamesUnique())
+                .addCoCo(new TopLevelComponentHasNoInstanceName())
+                .addCoCo(new ConnectorEndPointIsCorrectlyQualified())
+                .addCoCo(new InPortUniqueSender())
+                .addCoCo(new ImportsValid())
+                .addCoCo(new SubcomponentReferenceCycle())
+                .addCoCo(new ReferencedSubComponentExists())
+                .addCoCo(new PortNamesAreNotJavaKeywords())
+                .addCoCo(new InputPortChangedInCompute())
+                .addCoCo(new UsedPortsAndVariablesExist())
+                .addCoCo(new MultipleBehaviorImplementation())
+                .addCoCo(new InitBlockOnlyOnEmbeddedAJava())
+                .addCoCo(new AtMostOneInitBlock())
+                .addCoCo(new ImplementationInNonAtomicComponent())
+                .addCoCo(new NamesCorrectlyCapitalized())
+                .addCoCo(new AutomatonHasNoState())
+                .addCoCo(new AutomatonHasNoInitialState())
+                .addCoCo(new MultipleAssignmentsSameIdentifier())
+                .addCoCo(new AutomatonOutputInExpression())
+                .addCoCo(new AutomatonNoAssignmentToIncomingPort())
+                .addCoCo(new AutomatonReactionWithAlternatives())
+                .addCoCo(new AutomatonReactionWithAlternatives())
+                .addCoCo(new UseOfForbiddenExpression())
+                .addCoCo(new UseOfForbiddenExpression())
+                .addCoCo(new NamesCorrectlyCapitalized())
+                .addCoCo(new ConnectorSourceAndTargetComponentDiffer())
+                .addCoCo(new ConnectorSourceAndTargetExistAndFit())
+                .addCoCo(new ImportsAreUnique())
+                .addCoCo(new AutomatonDeclaredInitialStateDoesNotExist())
+                .addCoCo(new UseOfUndeclaredState())
+                .addCoCo(new UseOfUndeclaredField())
+                .addCoCo(new UseOfUndeclaredField())
+                .addCoCo(new SubcomponentGenericTypesCorrectlyAssigned())
+                .addCoCo(new ConfigurationParametersCorrectlyInherited())
+                .addCoCo(new InnerComponentNotExtendsDefiningComponent())
+                .addCoCo(new AutomatonNoDataAssignedToVariable())
+                .addCoCo(new AutomatonInitialDeclaredMultipleTimes())
+                .addCoCo(new AutomatonStateDefinedMultipleTimes())
+                .addCoCo(new UseOfValueLists())
+                .addCoCo(new IdentifiersAreUnique());*/
 
         Assert.assertTrue(Log.getFindings().toString(), Log.getFindings().isEmpty());
     }
