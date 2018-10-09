@@ -1,5 +1,5 @@
 # MontiArcAutomaton Generics Demo
-This is a minimal running example to show my problems with MAA and Generics
+This is a minimal running example to show the bug I am encountering in MontiArcAutomaton with generics
 
 ## How to run this example:
 `mvn clean compile` will work. `mvn test` will show the errors. In IntelliJ, you can also right-click > Run 'test()' on `demo.DemoTest` in src/test.
